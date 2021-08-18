@@ -1,0 +1,32 @@
+extends layout 
+
+block content 
+    form(id='form' method='post' action='/create')
+        p Username 
+            input(type='text' name='username')
+        p Password 
+            input(type='text' name='password')
+        p Email 
+            input(type='text' name='email')
+        p Age 
+            input(type='text' name='age')
+        p What is your favorite school subject?
+            select(name='answer1')
+                option(value='Math') Math
+                option(value='Science') Science
+                option(value='Language Arts') Language Arts
+                option(value='History') History
+        p What's your preferred pet?
+            select(name='answer2')
+                option(value='Dog') Dog
+                option(value='Cat') Cat
+                option(value='Bird') Bird
+                option(value='Fish') Fish
+        p What social media do you use most?
+            select(name='answer3')
+                option(value='Facebook') Facebook
+                option(value='Instagram') Instagram
+                option(value='Snapchat') Snapchat
+                option(value='Other Or None') Other Or None
+        p 
+            input(type='submit' value='Create Account')
