@@ -76,3 +76,15 @@ exports.createAccount = (req, res) => {
 
     res.redirect('/');
 };
+
+exports.login = (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    });
+};
+
+exports.edit = (req, res) => {
+    res.render('edit', {
+        title: 'Edit Account'
+    });
+};
