@@ -54,8 +54,10 @@ exports.create = (req, res) => {
 
 exports.createAccount = (req, res) => {
     let preHashPassword = req.body.password;
+
     // Do Hashing for Password
-    let postHashPassword = preHashPassword;
+    let salt = bcrypt.genSaltSync(10);
+    let postHashPassword = bcrypt.hashSync(preHashPassword, salt);
 
     let user = new User({
         username: req.body.username,
