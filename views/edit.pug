@@ -1,15 +1,15 @@
 extends layout 
 
 block content 
-    form(id='form' method='post' action='/create')
+    form(id='form' method='post' action='/edit')
         p Username  <br/>
-            input(type='text' name='username')
+            input(type='text' name='username' value=User.username)
         p Password  <br/>
-            input(type='text' name='password')
+            input(type='text' name='password' value=User.password)
         p Email  <br/>
-            input(type='text' name='email')
+            input(type='text' name='email' value=User.email)
         p Age  <br/>
-            input(type='text' name='age')
+            input(type='text' name='age' value=User.age)
         p What is your favorite school subject? <br/>
             select(name='answer1')
                 option(value='Math') Math
@@ -29,4 +29,4 @@ block content
                 option(value='Snapchat') Snapchat
                 option(value='Other Or None') Other Or None
         p 
-            input(type='submit' value='Create Account')
+            input(type='submit' value='Update')
