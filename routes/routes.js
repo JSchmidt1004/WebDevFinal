@@ -98,6 +98,13 @@ exports.tryLogin = (req, res) => {
             // Authenticate
             console.log("Authenticate");
         }
+        else 
+        {
+            res.render('login', {
+                title: 'Login',
+                failedLogin: 'Email or Password was incorrect'
+            });
+        }
     });
 };
 
