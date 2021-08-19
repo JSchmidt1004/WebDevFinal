@@ -3,3 +3,7 @@ th, td {
     padding: 8px;
     border-style: solid;
 }
+
+#failedLogin {
+    color: red;
+}
