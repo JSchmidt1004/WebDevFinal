@@ -83,6 +83,12 @@ exports.login = (req, res) => {
     });
 };
 
+exports.tryLogin = (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    });
+};
+
 exports.edit = (req, res) => {
     res.render('edit', {
         title: 'Edit Account'

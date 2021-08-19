@@ -40,4 +40,7 @@ app.get("/", routes.index);
 app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createAccount);
 
+app.get('/login', routes.login);
+app.post('/login', urlencodedParser, routes.tryLogin);
+
 app.listen(3000);
