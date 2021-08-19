@@ -84,23 +84,19 @@ exports.login = (req, res) => {
 };
 
 exports.tryLogin = (req, res) => {
-    let email = req.body.email;
-    let password = req.body.password;
     console.log("Login attempt");
-    User.find((err, users) => {
-        if (err) return console.log(err);
-        for (user in users) {
-            if (user.email === email)
-            {
-                console.log("Email found");
-                console.log(`Hashed password: ${user.password}`);
-                console.log(`Entered password: ${password}`);
-                console.log(`Password correct: ${bcrypt.compareSync(password, user.password)}`);
-                if (bcrypt.compareSync(password, user.password))
-                {
-                    // Authenticate
-                }
-            }
+
+    User.find({email: req.body.email}, (err, user) => {
+        if (err) return console.error(err);
+        console.log(user);
+
+        console.log(`Entered password: ${req.body.password}`);
+        console.log(`Password correct: ${bcrypt.compareSync(req.body.password, user[0].password)}`);
+
+        if (bcrypt.compareSync(req.body.password, user[0].password))
+        {
+            // Authenticate
+            console.log("Authenticate");
         }
     });
 };
