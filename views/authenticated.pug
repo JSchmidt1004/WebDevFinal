@@ -1,0 +1,22 @@
+extends layout 
+
+block content 
+    table(class='mytable')
+        tr 
+            th Username 
+            th Password 
+            th Email
+            th Age
+            th Answer 1
+            th Answer 2
+            th Answer 3
+        tr 
+            td=user.username
+            td=user.password
+            td=user.email
+            td=user.age
+            td=user.answer1
+            td=user.answer2
+            td=user.answer3
+    p
+        a(href='/edit') Edit Account

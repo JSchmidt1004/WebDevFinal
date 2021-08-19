@@ -1,15 +1,15 @@
 extends layout 
 
 block content 
-    form(id='form' method='post' action='/edit')
+    form(id='form' method='post' action='/authenticated/edit')
         p Username  <br/>
-            input(type='text' name='username' value=User.username)
+            input(type='text' name='username' value=user.username)
         p Password  <br/>
-            input(type='text' name='password' value=User.password)
+            input(type='text' name='password' value=user.password)
         p Email  <br/>
-            input(type='text' name='email' value=User.email)
+            input(type='text' name='email' value=user.email)
         p Age  <br/>
-            input(type='text' name='age' value=User.age)
+            input(type='text' name='age' value=user.age)
         p What is your favorite school subject? <br/>
             select(name='answer1')
                 option(value='Math') Math

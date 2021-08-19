@@ -43,4 +43,11 @@ app.post('/create', urlencodedParser, routes.createAccount);
 app.get('/login', routes.login);
 app.post('/login', urlencodedParser, routes.tryLogin);
 
+app.get('/logout', routes.logout);
+
+app.get('/authenticated', checkAuth, routes.authenticated);
+
+app.get('/authenticated/edit', checkAuth, routes.edit);
+app.post('/authenticated/edit', urlencodedParser, routes.editAccount);
+
 app.listen(3000);

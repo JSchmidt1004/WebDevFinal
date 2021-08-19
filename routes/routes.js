@@ -97,6 +97,13 @@ exports.tryLogin = (req, res) => {
         {
             // Authenticate
             console.log("Authenticate");
+
+            req.session.user = {
+                isAuthenticated: true,
+                username: user[0].username
+            }
+
+            res.redirect('/authenticated');
         }
         else 
         {
@@ -108,8 +115,27 @@ exports.tryLogin = (req, res) => {
     });
 };
 
+exports.logout = ((req, res) => {
+    req.session.destroy(err => {
+        if (err) return console.error(err);
+
+        res.redirect('/');
+    });
+});
+
+exports.authenticated = (req, res, user) => {
+    res.render('authenticated', {
+        title: `Welcome, ${user.username}!`
+    });
+};
+
 exports.edit = (req, res) => {
     res.render('edit', {
-        title: 'Edit Account'
+        title: 'Edit Account',
+        user
     });
+};
+
+exports.editAccount = (req, res) => {
+
 };
