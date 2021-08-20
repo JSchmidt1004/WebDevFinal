@@ -151,11 +151,14 @@ exports.authenticated = (req, res) => {
     let hour = date.getHours();
     let minute = date.getMinutes();
 
-    lastDate = lastDateVisited;
-    lastTime = lastTimeVisited;
+    lastDate = res.cookie.lastDateVisited;
+    lastTime = res.cookie.lastTimeVisited;
 
     lastDateVisited = `${month}/${day}/${year}`;
     lastTimeVisited = `${hour}:${minute}`;
+
+    console.log("Last Date Visited: " + lastDate);
+    console.log("Last Time Visited: " + lastTime);
 
     res.cookie("lastDateVisited", lastDateVisited, { maxAge: 9999999999999999999999999 });
     res.cookie("lastTimeVisited", lastTimeVisited, { maxAge: 9999999999999999999999999 });
