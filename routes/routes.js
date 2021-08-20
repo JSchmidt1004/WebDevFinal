@@ -29,12 +29,11 @@ let userSchema = mongoose.Schema(
 
 let User = mongoose.model("User_Collection", userSchema);
 
-/*
-exports.index = (request, response) =>
-{
-    response.send("This is index");
-}
-*/
+
+let visited = 0;
+let lastDateVisited = "";
+let lastTimeVisited = "";
+
 
 exports.index = (req, res) => {
     User.find((err, user) => {
@@ -137,9 +136,34 @@ exports.logout = ((req, res) => {
 });
 
 exports.authenticated = (req, res) => {
+    if (req.cookies.visited > 0)
+    {
+        visited = req.cookies.visited;
+    }
+    visited++;
+    res.cookie("visited", visited, { maxAge: 9999999999999999999999999 });
+
+    let date = new Date();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+
+    lastDate = lastDateVisited;
+    lastTime = lastTimeVisited;
+
+    lastDateVisited = `${month}/${day}/${year}`;
+    lastTimeVisited = `${hour}:${minute}`;
+
+    res.cookie("lastDateVisited", lastDateVisited, { maxAge: 9999999999999999999999999 });
+    res.cookie("lastTimeVisited", lastTimeVisited, { maxAge: 9999999999999999999999999 });
+
     res.render('authenticated', {
         title: `Welcome, ${req.session.user.username}!`,
-        user: req.session.user
+        user: req.session.user,
+        date: lastDate,
+        time: lastTime
     });
 };
 
