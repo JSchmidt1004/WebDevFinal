@@ -90,17 +90,20 @@ exports.tryLogin = (req, res) => {
         if (err) return console.error(err);
         console.log(user);
 
-        console.log(`Entered password: ${req.body.password}`);
-        console.log(`Password correct: ${bcrypt.compareSync(req.body.password, user[0].password)}`);
-
         if (bcrypt.compareSync(req.body.password, user[0].password))
         {
             // Authenticate
-            console.log("Authenticate");
+            console.log("Password Is Correct");
 
             req.session.user = {
                 isAuthenticated: true,
-                username: user[0].username
+                username: user[0].username,
+                password: user[0].password,
+                email: user[0].email,
+                age: user[0].age,
+                answer1: user[0].answer1,
+                answer2: user[0].answer2,
+                answer3: user[0].answer3
             }
 
             res.redirect('/authenticated');
@@ -123,16 +126,17 @@ exports.logout = ((req, res) => {
     });
 });
 
-exports.authenticated = (req, res, user) => {
+exports.authenticated = (req, res) => {
     res.render('authenticated', {
-        title: `Welcome, ${user.username}!`
+        title: `Welcome, ${req.session.user.username}!`,
+        user: req.session.user
     });
 };
 
 exports.edit = (req, res) => {
     res.render('edit', {
         title: 'Edit Account',
-        user
+        user: req.session.user
     });
 };
 
