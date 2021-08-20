@@ -2,10 +2,16 @@ extends layout
 
 block content 
     form(id='form' method='post' action='/login')
-        p Email 
+        <p class="formLabel">Email 
             input(type='text' name='email')
-        p Password 
+        </p>
+        <p class="formLabel">Password 
             input(type='text' name='password')
+        </p>
         p(id='failedLogin')=failedLogin
         p 
             input(type='submit' value='Login')
+    <br/>
+    <br/>
+    a(href="/create" class="botlinks") Create Account
+    

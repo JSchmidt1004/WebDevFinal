@@ -4,5 +4,17 @@ html
         title=title 
         link(rel='stylesheet' href='/style.css')
     body 
+        header 
+            nav 
+                ul  
+                    a(href='/'  target='')
+                        div(class='menu_item')
+                            li='Home'
+                    a(href='/login'  target='')
+                        div(class='menu_item')
+                            li='Login'
+                    
         h3=title 
-        block content
+        section
+            block content
+        footer

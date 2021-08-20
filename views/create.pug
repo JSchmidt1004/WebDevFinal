@@ -2,14 +2,18 @@ extends layout
 
 block content 
     form(id='form' method='post' action='/create')
-        p Username  <br/>
+        <p class="formLabel">Username 
             input(type='text' name='username')
-        p Password  <br/>
+        </p>
+        <p class="formLabel">Password    
             input(type='text' name='password')
-        p Email  <br/>
+        </p>
+        <p class="formLabel">Email 
             input(type='text' name='email')
-        p Age  <br/>
+        </p>
+        <p class="formLabel">Age 
             input(type='text' name='age')
+        </p>
         p What is your favorite school subject? <br/>
             select(name='answer1')
                 option(value='Math') Math
@@ -30,3 +34,7 @@ block content
                 option(value='Other Or None') Other Or None
         p 
             input(type='submit' value='Create Account')
+    <br/>
+    <br/>
+    a(href="/login" class="botlinks") Login
+    
