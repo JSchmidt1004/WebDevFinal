@@ -89,24 +89,34 @@ exports.tryLogin = (req, res) => {
     User.find({email: req.body.email}, (err, user) => {
         if (err) return console.error(err);
         console.log(user);
-
-        if (bcrypt.compareSync(req.body.password, user[0].password))
+        
+        if (user.length > 0)
         {
-            // Authenticate
-            console.log("Password Is Correct");
+            if (bcrypt.compareSync(req.body.password, user[0].password))
+            {
+                // Authenticate
+                console.log("Password Is Correct");
 
-            req.session.user = {
-                isAuthenticated: true,
-                username: user[0].username,
-                password: user[0].password,
-                email: user[0].email,
-                age: user[0].age,
-                answer1: user[0].answer1,
-                answer2: user[0].answer2,
-                answer3: user[0].answer3
+                req.session.user = {
+                    isAuthenticated: true,
+                    username: user[0].username,
+                    password: user[0].password,
+                    email: user[0].email,
+                    age: user[0].age,
+                    answer1: user[0].answer1,
+                    answer2: user[0].answer2,
+                    answer3: user[0].answer3
+                }
+
+                res.redirect('/authenticated');
             }
-
-            res.redirect('/authenticated');
+            else 
+            {
+                res.render('login', {
+                    title: 'Login',
+                    failedLogin: 'Email or Password was incorrect'
+                });
+            }
         }
         else 
         {
