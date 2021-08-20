@@ -5,9 +5,7 @@ block content
         p Username  <br/>
             input(type='text' name='username' value=user.username)
         p Password  <br/>
-            input(type='text' name='password')
-        p Email  <br/>
-            input(type='text' name='email' value=user.email)
+            input(type='text' name='password' value="Password1")
         p Age  <br/>
             input(type='text' name='age' value=user.age)
         p What is your favorite school subject? <br/>
@@ -29,4 +27,5 @@ block content
                 option(value='Snapchat') Snapchat
                 option(value='Other Or None') Other Or None
         p 
-            input(type='submit' value='Update')
+            input(type='submit' value='Update' class='menu_item')
+        a(href='/authenticated' class='menu_item') Back

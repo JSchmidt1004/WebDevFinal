@@ -99,6 +99,7 @@ exports.tryLogin = (req, res) => {
 
                 req.session.user = {
                     isAuthenticated: true,
+                    _id: user[0]._id,
                     username: user[0].username,
                     password: user[0].password,
                     email: user[0].email,
@@ -106,7 +107,7 @@ exports.tryLogin = (req, res) => {
                     answer1: user[0].answer1,
                     answer2: user[0].answer2,
                     answer3: user[0].answer3
-                }
+                };
 
                 res.redirect('/authenticated');
             }
@@ -151,5 +152,40 @@ exports.edit = (req, res) => {
 };
 
 exports.editAccount = (req, res) => {
+    User.findById(req.session.user._id, (err, user) => {
+        if (err) return console.error(err);
 
+        // Do Hashing for Password
+        let preHashPassword = req.body.password;
+        let salt = bcrypt.genSaltSync(10);
+        let postHashPassword = bcrypt.hashSync(preHashPassword, salt);
+
+        user.username = req.body.username;
+        user.password = postHashPassword;
+        // Email cannot be updated because it is what's used to login
+        user.email = user.email;
+        user.age = req.body.age;
+        user.answer1 = req.body.answer1;
+        user.answer2 = req.body.answer2;
+        user.answer3 = req.body.answer3;
+
+        user.save((err, user) => {
+            if (err) return console.error(err);
+            console.log(`${req.body.username}'s account information updated`);
+        });
+
+        req.session.user = {
+            isAuthenticated: true,
+            _id: user._id,
+            username: user.username,
+            password: user.password,
+            email: user.email,
+            age: user.age,
+            answer1: user.answer1,
+            answer2: user.answer2,
+            answer3: user.answer3
+        };
+
+        res.redirect('/authenticated');
+    });
 };

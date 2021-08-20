@@ -4,7 +4,6 @@ block content
     table(class='mytable')
         tr 
             th Username 
-            th Password 
             th Email
             th Age
             th Answer 1
@@ -13,7 +12,6 @@ block content
         each user in users
             tr 
                 td=user.username
-                td=user.password
                 td=user.email
                 td=user.age
                 td=user.answer1
