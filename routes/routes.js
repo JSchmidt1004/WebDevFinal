@@ -29,11 +29,7 @@ let userSchema = mongoose.Schema(
 
 let User = mongoose.model("User_Collection", userSchema);
 
-
 let visited = 0;
-let lastDateVisited = "";
-let lastTimeVisited = "";
-
 
 exports.index = (req, res) => {
     User.find((err, user) => {
@@ -145,23 +141,17 @@ exports.authenticated = (req, res) => {
     res.cookie("visited", visited, { maxAge: 9999999999999999999999999 });
 
     let date = new Date();
-    let month = date.getMonth();
+    let month = date.getMonth() + 1;
     let day = date.getDate();
     let year = date.getFullYear();
     let hour = date.getHours();
     let minute = date.getMinutes();
 
-    lastDate = res.cookie.lastDateVisited;
-    lastTime = res.cookie.lastTimeVisited;
+    let lastDate = req.cookies.lastDateVisited;
+    let lastTime = req.cookies.lastTimeVisited;
 
-    lastDateVisited = `${month}/${day}/${year}`;
-    lastTimeVisited = `${hour}:${minute}`;
-
-    console.log("Last Date Visited: " + lastDate);
-    console.log("Last Time Visited: " + lastTime);
-
-    res.cookie("lastDateVisited", lastDateVisited, { maxAge: 9999999999999999999999999 });
-    res.cookie("lastTimeVisited", lastTimeVisited, { maxAge: 9999999999999999999999999 });
+    res.cookie("lastDateVisited", `${month}/${day}/${year}`, { maxAge: 9999999999999999999999999 });
+    res.cookie("lastTimeVisited", `${hour}:${minute}`, { maxAge: 9999999999999999999999999 });
 
     res.render('authenticated', {
         title: `Welcome, ${req.session.user.username}!`,
