@@ -45,6 +45,10 @@ select{
     color: #93748A
 }
 
+.menu_item_small{
+    width: 80px;
+}
+
 .menu_item:hover {
     background-color: #AECFDF;
 }
