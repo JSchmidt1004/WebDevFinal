@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+app.use(cookieParser());
+
 app.set('view engine' , 'pug');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
