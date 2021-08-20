@@ -156,8 +156,7 @@ exports.authenticated = (req, res) => {
     res.render('authenticated', {
         title: `Welcome, ${req.session.user.username}!`,
         user: req.session.user,
-        date: lastDate,
-        time: lastTime
+        lastVisited: (lastDate !== undefined) ? `Last Visited: ${lastDate}, ${lastTime}` : "Never Visited Before"
     });
 };
 
