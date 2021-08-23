@@ -14,12 +14,17 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(expressSession(
-    {
-        secret: "TomBreatty",
-        saveUninitialized: true,
-        resave: true
-    }));
-    
+{
+    secret: "TomBreatty",
+    saveUninitialized: true,
+    resave: true
+}));
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const checkAuth = (request, response, next) =>
 {
