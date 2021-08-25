@@ -81,22 +81,37 @@ exports.api = (req, res) => {
         
         let questionJSON = [
             {
-                option1: answerCount(user, 0, "Math"),
-                option2: answerCount(user, 0, "Science"),
-                option3: answerCount(user, 0, "Language Arts"),
-                option4: answerCount(user, 0, "History")
+                question: "What is your favorite school subject?",
+                option1: "Math",
+                option1Count: answerCount(user, 0, "Math"),
+                option2: "Science",
+                option2Count: answerCount(user, 0, "Science"),
+                option3: "Language Arts",
+                option3Count: answerCount(user, 0, "Language Arts"),
+                option4: "History",
+                option4Count: answerCount(user, 0, "History")
             },
             {
-                option1: answerCount(user, 1, "Dog"),
-                option2: answerCount(user, 1, "Cat"),
-                option3: answerCount(user, 1, "Bird"),
-                option4: answerCount(user, 1, "Fish")
+                question: "What's your preferred pet?",
+                option1: "Dog",
+                option1Count: answerCount(user, 1, "Dog"),
+                option2: "Cat",
+                option2Count: answerCount(user, 1, "Cat"),
+                option3: "Bird",
+                option3Count: answerCount(user, 1, "Bird"),
+                option4: "Fish",
+                option4Count: answerCount(user, 1, "Fish")
             },
             {
-                option1: answerCount(user, 2, "Facebook"),
-                option2: answerCount(user, 2, "Instagram"),
-                option3: answerCount(user, 2, "Snapchat"),
-                option4: answerCount(user, 2, "Other Or None")
+                question: "What social media do you use most?",
+                option1: "Facebook",
+                option1Count: answerCount(user, 2, "Facebook"),
+                option2: "Instagram",
+                option2Count: answerCount(user, 2, "Instagram"),
+                option3: "Snapchat",
+                option3Count: answerCount(user, 2, "Snapchat"),
+                option4: "Other Or None",
+                option4Count: answerCount(user, 2, "Other Or None")
             }
         ];
         
