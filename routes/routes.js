@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
+const { json } = require("express");
 
 mongoose.Promise = global.Promise;
 
@@ -39,6 +40,74 @@ exports.index = (req, res) => {
             users: user
         });
     });
+};
+
+answerCount = (usersArray, questionNumber, answerSearch) => {
+    let answerNumber = 0;
+    switch (questionNumber)
+    {
+        case 0:
+            for (i = 0; i < usersArray.length; i++)
+            {
+                if (usersArray[i].answer1 === answerSearch) answerNumber++;
+            }
+            break;
+        case 1:
+            for (i = 0; i < usersArray.length; i++)
+            {
+                if (usersArray[i].answer2 === answerSearch) answerNumber++;
+            }
+            break;
+        case 2:
+            for (i = 0; i < usersArray.length; i++)
+            {
+                if (usersArray[i].answer3 === answerSearch) answerNumber++;
+            }
+            break;
+        default:
+            console.log("Bruh, wrong question number");
+            return -1;
+    };
+
+    return answerNumber;
+};
+// Math, Science, Language Arts, History
+// Dog, Cat, Bird, Fish
+// Facebook, Instagram, Snapchat, Other Or None
+
+exports.api = (req, res) => {
+    User.find((err, user) => {
+        if(err) return console.error(err);
+        
+        let questionJSON = [
+            {
+                option1: answerCount(user, 0, "Math"),
+                option2: answerCount(user, 0, "Science"),
+                option3: answerCount(user, 0, "Language Arts"),
+                option4: answerCount(user, 0, "History")
+            },
+            {
+                option1: answerCount(user, 1, "Dog"),
+                option2: answerCount(user, 1, "Cat"),
+                option3: answerCount(user, 1, "Bird"),
+                option4: answerCount(user, 1, "Fish")
+            },
+            {
+                option1: answerCount(user, 2, "Facebook"),
+                option2: answerCount(user, 2, "Instagram"),
+                option3: answerCount(user, 2, "Snapchat"),
+                option4: answerCount(user, 2, "Other Or None")
+            }
+        ];
+        
+        // This will output all data for all users
+        //console.log(user);
+        //res.json(user);
+
+        // This will output only how many chose each answer for each question
+        console.log(questionJSON);
+        res.json(questionJSON);
+    })
 };
 
 exports.create = (req, res) => {

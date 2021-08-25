@@ -44,6 +44,8 @@ let urlencodedParser  = express.urlencoded({
 
 app.get("/", routes.index);
 
+app.get('/api', routes.api);
+
 app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createAccount);
 
