@@ -35,7 +35,7 @@ const fillGraph = questionData =>
 {
     questionData.question;
     ctx.fillStyle = "#111";
-    ctx.fillText(questionData.question, (canvas.width / 2) - 50, 25, 250);
+    ctx.fillText(questionData.question, (canvas.width / 2) - 150, 25, 300);
 
     let options = [questionData.option1, questionData.option2, questionData.option3, questionData.option4];
     let counts = [questionData.option1Count, questionData.option2Count, questionData.option3Count, questionData.option4Count];
@@ -48,7 +48,7 @@ const fillGraph = questionData =>
 
     for(let i = 0; i < 4; i++)
     {
-        ctx.fillText(options[i], x - 10, canvas.height - 15, width);
+        ctx.fillText(options[i], x - 50, canvas.height - 15, width);
 
         let currentCount = 50 * counts[i];
         ctx.fillRect(x - (width / 2), startPoint - currentCount, width, currentCount);

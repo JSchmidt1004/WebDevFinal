@@ -1,9 +1,15 @@
 html {
     background-color: #7C7287;
     color: #fff;
-    max-width: 400px;
+    /* max-width: 400px; */
     margin:auto;
     text-align: center;
+}
+
+.centered{
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
 }
 
 ul{
@@ -68,6 +74,6 @@ th, td {
     margin: auto;
 }
 
-.bargraph {
-    background-color: #1E152A;
+#bargraph {
+    width: auto;
 }
