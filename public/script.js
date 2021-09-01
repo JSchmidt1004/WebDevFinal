@@ -81,4 +81,4 @@ const loop = () =>
 
 loop();
 
-setInterval(loop, 15000);
+setInterval(loop, 10000);
