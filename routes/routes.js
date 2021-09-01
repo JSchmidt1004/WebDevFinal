@@ -25,7 +25,8 @@ let userSchema = mongoose.Schema(
         age: String,
         answer1: String,
         answer2: String,
-        answer3: String
+        answer3: String,
+        avatar: String
     });
 
 let User = mongoose.model("User_Collection", userSchema);
@@ -137,7 +138,7 @@ exports.createAccount = (req, res) => {
     // Do Hashing for Password
     let salt = bcrypt.genSaltSync(10);
     let postHashPassword = bcrypt.hashSync(preHashPassword, salt);
-
+    let id = makeid(5);
     let user = new User({
         username: req.body.username,
         password: postHashPassword,
@@ -145,7 +146,8 @@ exports.createAccount = (req, res) => {
         age: req.body.age,
         answer1: req.body.answer1,
         answer2: req.body.answer2,
-        answer3: req.body.answer3
+        answer3: req.body.answer3,
+        avatar: 'https://avatars.dicebear.com/api/avataaars/:' + id + '.svg'
     });
 
     user.save((err, user) => {
@@ -185,7 +187,8 @@ exports.tryLogin = (req, res) => {
                     age: user[0].age,
                     answer1: user[0].answer1,
                     answer2: user[0].answer2,
-                    answer3: user[0].answer3
+                    answer3: user[0].answer3,
+                    avatar: user[0].avatar
                 };
 
                 res.redirect('/authenticated');
@@ -283,9 +286,21 @@ exports.editAccount = (req, res) => {
             age: user.age,
             answer1: user.answer1,
             answer2: user.answer2,
-            answer3: user.answer3
+            answer3: user.answer3,
+            avatar: user.avatar
         };
 
         res.redirect('/authenticated');
     });
 };
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+        charactersLength));
+   }
+   return result;
+}

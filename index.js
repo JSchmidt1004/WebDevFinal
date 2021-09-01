@@ -59,4 +59,6 @@ app.get('/authenticated', checkAuth, routes.authenticated);
 app.get('/authenticated/edit', checkAuth, routes.edit);
 app.post('/authenticated/edit', urlencodedParser, routes.editAccount);
 
+//app.post('/authenticated/avatar', urlencodedParser, routes.changeAvatar);
+
 app.listen(3000);

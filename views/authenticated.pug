@@ -4,6 +4,7 @@ block content
     p=lastVisited
     table(class='mytable')
         tr 
+            th Avatar
             th Username 
             th Email
             th Age
@@ -11,6 +12,7 @@ block content
             th Answer 2
             th Answer 3
         tr 
+            td <img src='#{user.avatar}' width=50px height=50px/>
             td=user.username
             td=user.email
             td=user.age
