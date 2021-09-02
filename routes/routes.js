@@ -294,6 +294,35 @@ exports.editAccount = (req, res) => {
     });
 };
 
+exports.changeAvatar = (req, res) => {
+    User.findById(req.session.user._id, (err, user) => {
+        if(err) return console.error(err);
+
+        let id = makeid(5);
+        user.avatar = 'https://avatars.dicebear.com/api/avataaars/:' + id + '.svg';
+
+        user.save((err, user) => {
+            if (err) return console.error(err);
+            console.log(`${req.body.username}'s avatar updated`);
+        });
+
+        req.session.user = {
+            isAuthenticated: true,
+            _id: user._id,
+            username: user.username,
+            password: user.password,
+            email: user.email,
+            age: user.age,
+            answer1: user.answer1,
+            answer2: user.answer2,
+            answer3: user.answer3,
+            avatar: user.avatar
+        }
+
+        res.redirect('/authenticated');
+    });
+};
+
 function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

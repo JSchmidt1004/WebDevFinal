@@ -21,5 +21,8 @@ block content
             td=user.answer3
     p
         a(href='/authenticated/edit' class='menu_item') Edit Account
+    p 
+        form(id='form' method='post' action='/authenticated/avatar' class="centered")
+            input(type='submit' class='menu_item ' value='Change Avatar')
     p
         a(href='/logout' class='menu_item menu_item_small') Log Out
